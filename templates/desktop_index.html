@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR and Translation</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Image to Text with Translation</h1>
+
+    <!-- Upload Form -->
+    <form method="POST" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
+
+            <div class="language-selector">
+                <label for="source_lang">Source Language:</label>
+                <select name="source_lang" required>
+<!--                    <option value="auto">Auto Detect</option>-->
+                    <option value="en">English</option>
+<!--                    <option value="fr">French</option>-->
+<!--                    <option value="es">Spanish</option>-->
+<!--                    <option value="zh-cn">Chinese (Simplified)</option>-->
+<!--                    <option value="zh-tw">Chinese (Traditional)</option>-->
+                    <!-- Add more languages as needed -->
+                </select>
+                <span class="separator">→</span> <!-- Separator indicating translation direction -->
+                <label for="target_lang">Target Language:</label>
+                <select name="target_lang" required>
+                    <option value="zh-cn" selected>Chinese (Simplified)</option> <!-- Default to Simplified Chinese -->
+                    <option value="en">English</option>
+                    <option value="fr">French</option>
+                    <option value="es">Spanish</option>
+                    <option value="zh-tw">Chinese (Traditional)</option>
+                    <!-- Add more languages as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="image">Choose an image:</label>
+                <input type="file" name="image" class="form-control-file" required>
+                <button type="submit" class="btn btn-primary mt-3" style="margin-left: 50px;">Upload and Translate</button>
+            </div>
+
+    </form>
+
+    <!-- Display Uploaded Image and Translations -->
+    {% if original_lines and translated_lines %}
+        <div class="container">
+            <div class="image-preview">
+                <h3>Uploaded Image</h3>
+                <img src="{{ image_path }}" alt="Uploaded Image">
+            </div>
+
+            <div class="text-output">
+                <h3>Line-by-Line Translation</h3>
+                <table>
+                    <tr>
+                        <th>Original Text</th>
+                        <th>Translated Text (French)</th>
+                    </tr>
+                    {% for original, translated in zip(original_lines, translated_lines) %}
+                    <tr>
+                        <td>{{ original }}</td>
+                        <td>{{ translated }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    {% endif %}
+</body>
+</html>
