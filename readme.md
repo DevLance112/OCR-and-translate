@@ -47,7 +47,7 @@ To get started with this project, follow the instructions below:
     ```
     required to install [tesseract-ocr](https://github.com/tesseract-ocr/tesseract)
 
-5. Set up your Google Cloud credentials for the Translation API.
+5. Set up your Google Cloud credentials for the Translation API (optional).
 
 6. Run the application:
     ```bash
